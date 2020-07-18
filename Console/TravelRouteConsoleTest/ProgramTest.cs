@@ -19,7 +19,7 @@ namespace TravelRouteConsoleTest
         {
             var ex = Assert.Throws<ArgumentException>(() => Program.Main(new string[]{"first", "second"}));
 
-            Assert.That(ex.Message, Is.EqualTo("Please enter a csv file."));
+            Assert.That(ex.Message, Is.EqualTo("Only one argument should be informed."));
         }
 
         [Test]

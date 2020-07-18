@@ -6,7 +6,11 @@ namespace TravelRouteConsole
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            if (args.Length == 0)
+                throw new ArgumentException("Please enter a csv file.");
+            if (args.Length != 1)
+                throw new ArgumentException("Only one argument should be informed.");
+            
         }
     }
 }
