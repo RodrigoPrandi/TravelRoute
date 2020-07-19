@@ -1,6 +1,9 @@
 using TravelRouteConsole;
 using NUnit.Framework;
 using System;
+using TravelRouteConsole.IoC;
+using TravelRouteConsole.Contoller;
+using NSubstitute;
 
 namespace TravelRouteConsoleTest
 {
@@ -25,9 +28,14 @@ namespace TravelRouteConsoleTest
         [Test]
         public void WhenSendOnlyOneArgumentThenInitializeProgram()
         {
-            Program.Main(new string[] { "first" });
+            var paramter = "first";
+            var travelRouteControllerMock = Substitute.For<TravelRouteController>();
 
-            Assert.Pass();
+            RegisterIoC.KernelIoC.Rebind<TravelRouteController>().ToConstant(travelRouteControllerMock);
+
+            Program.Main(new string[] { paramter });
+
+            travelRouteControllerMock.Received(2).Initialize(paramter);
         }
     }
 }

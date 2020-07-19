@@ -1,4 +1,6 @@
 ﻿using System;
+using TravelRouteConsole.Contoller;
+using TravelRouteConsole.IoC;
 
 namespace TravelRouteConsole
 {
@@ -10,7 +12,12 @@ namespace TravelRouteConsole
                 throw new ArgumentException("Please enter a csv file.");
             if (args.Length != 1)
                 throw new ArgumentException("Only one argument should be informed.");
-            
+
+            var file = args[0];
+
+            var travelRouteController = RegisterIoC.Get<TravelRouteController>();
+
+            travelRouteController.Initialize(file);
         }
     }
 }
