@@ -1,5 +1,5 @@
 ﻿using System;
-using TravelRouteConsole.Contoller;
+using TravelRouteConsole.Business;
 using TravelRouteConsole.IoC;
 
 namespace TravelRouteConsole
@@ -15,7 +15,7 @@ namespace TravelRouteConsole
 
             var file = args[0];
 
-            var travelRouteController = RegisterIoC.Get<TravelRouteController>();
+            var travelRouteController = RegisterIoC.Get<ITravelRouteController>();
 
             travelRouteController.Initialize(file);
         }

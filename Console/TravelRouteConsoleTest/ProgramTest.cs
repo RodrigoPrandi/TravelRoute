@@ -2,13 +2,14 @@ using TravelRouteConsole;
 using NUnit.Framework;
 using System;
 using TravelRouteConsole.IoC;
-using TravelRouteConsole.Contoller;
+using TravelRouteConsole.Business;
 using NSubstitute;
 
 namespace TravelRouteConsoleTest
 {
     public class ProgramTest
     {
+        [SetUp]
         [Test]
         public void WhenSendEmptyArgumentThenReturnArgumentException()
         {
@@ -29,13 +30,13 @@ namespace TravelRouteConsoleTest
         public void WhenSendOnlyOneArgumentThenInitializeProgram()
         {
             var paramter = "first";
-            var travelRouteControllerMock = Substitute.For<TravelRouteController>();
+            var travelRouteControllerMock = Substitute.For<ITravelRouteController>();
 
-            RegisterIoC.KernelIoC.Rebind<TravelRouteController>().ToConstant(travelRouteControllerMock);
+            RegisterIoC.KernelIoC.Rebind<ITravelRouteController>().ToConstant(travelRouteControllerMock);
 
             Program.Main(new string[] { paramter });
 
-            travelRouteControllerMock.Received(2).Initialize(paramter);
+            travelRouteControllerMock.Received().Initialize(paramter);
         }
     }
 }

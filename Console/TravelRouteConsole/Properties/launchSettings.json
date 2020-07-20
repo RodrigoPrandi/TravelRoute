@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TravelRouteConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Users\\rodri\\OneDrive\\Área de Trabalho\\test\\input-file.txt\"",
+      "nativeDebugging": false
+    }
+  }
+}

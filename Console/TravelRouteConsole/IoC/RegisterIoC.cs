@@ -1,6 +1,10 @@
-﻿
-using Ninject;
-using TravelRouteConsole.Contoller;
+﻿using Ninject;
+using TravelRouteConsole.Business;
+using TravelRouteConsole.Business.Impl;
+using TravelRouteConsole.Factory;
+using TravelRouteConsole.Factory.Impl;
+using TravelRouteConsole.Service;
+using TravelRouteConsole.Service.Impl;
 
 namespace TravelRouteConsole.IoC
 {
@@ -26,7 +30,13 @@ namespace TravelRouteConsole.IoC
 
         private static void RegistrarClasses()
         {
-            KernelIoC.Bind<TravelRouteController>().ToSelf();
+            KernelIoC.Bind<ITravelRouteController>().To<TravelRouteController>();
+            KernelIoC.Bind<IRouteFactory>().To<RouteFactory>();
+            KernelIoC.Bind<IRouteReader>().To<CsvRouteReader>();
+            KernelIoC.Bind<IUserInterface>().To<UserInterfaceConsole>();
+            KernelIoC.Bind<IBestRouteService>().To<BestRouteService>();
+            KernelIoC.Bind<IRouteService>().To<RouteService>();
+            KernelIoC.Bind<ITravelRouteApi>().To<TravelRouteApi>();
         }
 
         public static T Get<T>()
