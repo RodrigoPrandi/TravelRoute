@@ -14,7 +14,7 @@
 Buildar imagem docker:
 
 ```bash
-docker build --tag travelrouteapi:local .
+docker build --tag travelrouteapi:local .\Api\TravelRouteApi\
 ```
 
 Executar imagem gerada local:
@@ -31,6 +31,18 @@ docker stop travelrouteapi
 
 
 ###  2) Console
+
+Após subir a API executar o seguinte comando:
+
+```bash
+bash console.sh CAMINHO_ARQUIVO
+```
+
+## Executar os testes
+
+```bash
+bash tests.sh
+```
 
 ## Estrutura dos arquivos/pacotes
 
