@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using TravelRouteApi.IoC;
 
 namespace TravelRouteApi
@@ -28,6 +23,15 @@ namespace TravelRouteApi
             services.AddControllers()
                 .AddNewtonsoftJson();
 
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "TravelRouteApi",
+                    Contact = new OpenApiContact { Name = "Rodrigo Prandi Araújo", Email = "rodrigo.prandi@outlook.com" }
+                });               
+            });
 
 
             InjectDependencies.RegisterServices(services);
@@ -50,6 +54,14 @@ namespace TravelRouteApi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json",
+                    "TravelRoute WebApi");
+                c.RoutePrefix = string.Empty;
             });
         }
     }
