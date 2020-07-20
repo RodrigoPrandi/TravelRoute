@@ -38,6 +38,11 @@ Após subir a API executar o seguinte comando:
 bash console.sh CAMINHO_ARQUIVO
 ```
 
+Caso API for publicada em outro caminho ou em outra porta será necessário adequar a url no arquivo 
+```
+Console/TravelRouteConsole/appsettings.json
+```
+
 ## Executar os testes
 
 ```bash
