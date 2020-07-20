@@ -11,6 +11,7 @@ namespace TravelRouteApi.IoC
     {
         internal static void RegisterServices(IServiceCollection services)
         {
+            services.AddScoped<IRouteRepository, InMemoryRouteRepository>();
             services.AddScoped<IBestRouteService, BestRouteService>();
             services.AddScoped<IRouteService, RouteService>();
             services.AddScoped<ILowestPriceFinder, DijkstraLowestPriceFinder>();
