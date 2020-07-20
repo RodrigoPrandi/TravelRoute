@@ -24,11 +24,11 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies API
-      run: dotnet .\Api\ restore
+      run: dotnet ./Api/TravelRouteApi.sln restore
     - name: Build API
-      run: dotnet build .\Api\ --configuration Release --no-restore
+      run: dotnet build ./Api/TravelRouteApi.sln --configuration Release --no-restore
     - name: Test API
-      run: dotnet test .\Api\ --no-restore --verbosity normal
+      run: dotnet test ./Api/TravelRouteApi.sln --no-restore --verbosity normal
 
      
   # Push image to GitHub Packages.
@@ -42,7 +42,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image API
-        run: docker build ./Api/TravelRouteApi/ --file Dockerfile --tag $IMAGE_NAME
+        run: docker build ./Api/TravelRouteApi/Dockerfile --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
