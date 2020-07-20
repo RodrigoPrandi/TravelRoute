@@ -41,6 +41,14 @@ jobs:
     - name: Test Console
       working-directory: Console
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish Console
+      working-directory: Console
+      run: dotnet publish
+    - name: Push Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: consoleTravelApi
+        path: Console/TravelRouteConsole/publish/
 
      
   # Push image to GitHub Packages.
