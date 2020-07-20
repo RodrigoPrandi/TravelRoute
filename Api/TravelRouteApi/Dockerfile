@@ -7,10 +7,9 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["TravelRouteApi/TravelRouteApi.csproj", "TravelRouteApi/"]
-RUN dotnet restore "TravelRouteApi/TravelRouteApi.csproj"
 COPY . .
-WORKDIR "/src/TravelRouteApi"
+RUN dotnet restore "TravelRouteApi.csproj"
+WORKDIR "/src/"
 RUN dotnet build "TravelRouteApi.csproj" -c Release -o /app/build
 
 FROM build AS publish
