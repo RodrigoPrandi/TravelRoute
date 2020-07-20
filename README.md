@@ -52,13 +52,14 @@ bash tests.sh
 │   │    └── CI.yml (Arquivo de configuração do GitHub Actions, responsável por executar o build e deploy automatizado, rodando os testes)
 ├── Api
 │   ├── TravelRouteApi (Projeto aplicação API rest)
-│   │   ├── **/*.css
 │   └── TravelRouteApiTest (Projeto de testes unitários da API rest)
 ├── Console
 │   ├── TravelRouteConsole (Projeto aplicação console)
-│   │   ├── **/*.css
 │   └── TravelRouteConsole.Test (Projeto de testes unitários da console)
+├── console.sh (Script para buildar e executar o console aplication)
+├── tests.sh (Script para buildar e executar os testes unitários)
 └── .gitignore
+
 ```
 
 ## Decisões de Desing
