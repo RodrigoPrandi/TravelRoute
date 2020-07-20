@@ -24,17 +24,17 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies API
-      run: dotnet ./Api/ restore
+      run: dotnet .\Api\ restore
     - name: Build API
-      run: dotnet build ./Api/ --configuration Release --no-restore
+      run: dotnet build .\Api\ --configuration Release --no-restore
     - name: Test API
-      run: dotnet test ./Api/ --no-restore --verbosity normal
+      run: dotnet test .\Api\ --no-restore --verbosity normal
 
      
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
-
+    needs: [build]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
 
