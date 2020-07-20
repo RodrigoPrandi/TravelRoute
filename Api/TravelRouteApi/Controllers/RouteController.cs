@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using TravelRouteApi.Dto;
+using TravelRouteApi.Exceptions;
+using TravelRouteApi.Service;
 
 namespace TravelRouteApi.Controllers
 {
@@ -12,10 +10,26 @@ namespace TravelRouteApi.Controllers
     [ApiController]
     public class RouteController : ControllerBase
     {
-        // POST api/<RouteController>
-        [HttpPost]
-        public void Post([FromBody] string routeValue)
+        private readonly IRouteService routeService;
+
+        public RouteController(IRouteService routeService)
         {
+            this.routeService = routeService;
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public ActionResult<string> Post([FromBody] RouteValue routeValue)
+        {
+            try
+            {
+                routeService.Save(routeValue);
+                return Created("api/route", routeValue);
+            }
+            catch (BusinessException e)
+            {
+                return ValidationProblem(e.Message, null, StatusCodes.Status400BadRequest);
+            }
         }
     }
 }
