@@ -16,6 +16,7 @@ namespace TravelRouteApi.IoC
             services.AddScoped<ILowestPriceFinder, DijkstraLowestPriceFinder>();
             services.AddScoped<IGraphCreator, GraphCreator>();
             services.AddScoped<IFindFactory, FindFactory>();
+            services.AddScoped<IDijkstraImplementation, DijkstraImplementation>();
         }
     }
 }
