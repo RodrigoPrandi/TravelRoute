@@ -24,10 +24,13 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies API
-      run: dotnet Api/TravelRouteApi.sln restore
+      working-directory: Api
+      run: dotnet restore
     - name: Build API
+      working-directory: Api
       run: dotnet build Api/TravelRouteApi.sln --configuration Release --no-restore
     - name: Test API
+      working-directory: Api
       run: dotnet test Api/TravelRouteApi.sln --no-restore --verbosity normal
 
      
